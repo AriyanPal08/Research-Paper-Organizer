@@ -203,10 +203,16 @@ class AuthSystem {
 
     this.users.push(newUser);
     this.saveUsers();
-
+    // AFTER — add setCurrentUser() before the redirect:
     setTimeout(() => {
+      this.setCurrentUser({        // ✅ ADD THIS
+      id: newUser.id,            // ✅
+      name: newUser.name,        // ✅
+      email: newUser.email,      // ✅
+      rememberMe: false,         // ✅
+      });                          // ✅
       this.showSuccess("Account created successfully!", () => {
-        window.location.href = "index.html";
+      window.location.href = "index.html";
       });
     }, 1500);
   }
